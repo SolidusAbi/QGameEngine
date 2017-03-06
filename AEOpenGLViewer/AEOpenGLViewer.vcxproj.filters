@@ -38,6 +38,9 @@
     <ClCompile Include="Transform3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataLIDAR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AEOpenGLViewer.h">
@@ -53,6 +56,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Transform3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataLIDAR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

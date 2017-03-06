@@ -1,5 +1,5 @@
 #pragma once
-ifndef TRANSFORM3D_H
+#ifndef TRANSFORM3D_H
 #define TRANSFORM3D_H
 
 #include <QVector3D>
