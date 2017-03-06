@@ -71,12 +71,27 @@
     <ClCompile Include="AEOpenGLViewer.cpp" />
     <ClCompile Include="Camera3D.cpp" />
     <ClCompile Include="DataLIDAR.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_AEOpenGLViewer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AEOpenGLViewer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Transform3D.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AEOpenGLViewer.h" />
+    <CustomBuild Include="AEOpenGLViewer.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing AEOpenGLViewer.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_OPENGL_LIB -DAEOPENGLVIEWER_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_WINDLL "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\include\pcl-1.8" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Boost\include\boost-1_61" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Eigen\eigen3" "-IC:\Programacion\Lib\Install\v140\AE_DataTypes\include" "-IC:\Programacion\Lib\Install\v140\AeGeneralUtility\include" "-IC:\Programacion\Lib\Install\v140\AELas\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing AEOpenGLViewer.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_OPENGL_LIB -DAEOPENGLVIEWER_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_WINDLL "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\include\pcl-1.8" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Boost\include\boost-1_61" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Eigen\eigen3" "-IC:\Programacion\Lib\Install\v140\AE_DataTypes\include" "-IC:\Programacion\Lib\Install\v140\AeGeneralUtility\include" "-IC:\Programacion\Lib\Install\v140\AELas\include"</Command>
+    </CustomBuild>
     <ClInclude Include="aeopenglviewer_global.h" />
     <ClInclude Include="Camera3D.h" />
     <ClInclude Include="Data.h" />
