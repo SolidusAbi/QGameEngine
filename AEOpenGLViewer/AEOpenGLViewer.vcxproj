@@ -69,6 +69,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AEOpenGLViewer.cpp" />
+    <ClCompile Include="Camera3D.cpp" />
     <ClCompile Include="DataLIDAR.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Transform3D.cpp" />
@@ -77,6 +78,7 @@
   <ItemGroup>
     <ClInclude Include="AEOpenGLViewer.h" />
     <ClInclude Include="aeopenglviewer_global.h" />
+    <ClInclude Include="Camera3D.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="DataLIDAR.h" />
     <ClInclude Include="Input.h" />
