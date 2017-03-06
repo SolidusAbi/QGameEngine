@@ -63,6 +63,9 @@
     <ClCompile Include="AnomalyGLWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AEOpenGLHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AnomalyGLWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AEOpenGLHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

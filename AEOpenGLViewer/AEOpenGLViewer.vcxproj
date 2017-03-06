@@ -68,6 +68,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AEOpenGLHandler.cpp" />
     <ClCompile Include="AEOpenGLViewer.cpp" />
     <ClCompile Include="AnomalyGLWindow.cpp" />
     <ClCompile Include="Camera3D.cpp" />
@@ -93,6 +94,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_OPENGL_LIB -DAEOPENGLVIEWER_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_WINDLL "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\include\pcl-1.8" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Boost\include\boost-1_61" "-IC:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Eigen\eigen3" "-IC:\Programacion\Lib\Install\v140\AE_DataTypes\include" "-IC:\Programacion\Lib\Install\v140\AeGeneralUtility\include" "-IC:\Programacion\Lib\Install\v140\AELas\include"</Command>
     </CustomBuild>
+    <ClInclude Include="AEOpenGLHandler.h" />
     <ClInclude Include="aeopenglviewer_global.h" />
     <ClInclude Include="AnomalyGLWindow.h" />
     <ClInclude Include="Camera3D.h" />
