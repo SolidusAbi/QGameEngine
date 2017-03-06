@@ -60,6 +60,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_AEOpenGLViewer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="AnomalyGLWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnomalyGLWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
