@@ -4,11 +4,12 @@
 
 #include <QString>
 
+#include "aeopenglviewer_global.h"
 #include "AEOpenGLViewer.h"
 #include "Data.h"
 #include "Vertex.h"
 
-enum AEOpenGLHandleView {
+enum AEOpenGLHandlerView {
 	AnomalyWindow,
 	Default
 };
@@ -29,9 +30,9 @@ class AEOpenGLViewer;
 *	@brief	This class is a controller in order to handle the GLWindow class. It is not necessary
 *		to use but it is recommender.
 */
-class AEOpenGLHandler {
+class AEOPENGLVIEWER_EXPORT AEOpenGLHandler {
 
-	enum AEOpenGLHandleState {
+	enum AEOpenGLHandlerState {
 		Created,
 		Cleansed,
 		DataImported,
@@ -39,13 +40,13 @@ class AEOpenGLHandler {
 		Rendering
 	};
 
-	enum AEOpenGLHandleData {
+	enum AEOpenGLHandlerData {
 		LIDAR
 	};
 
 public:
 	AEOpenGLHandler();
-	AEOpenGLHandler(AEOpenGLHandleView view, int width, int height);
+	AEOpenGLHandler(AEOpenGLHandlerView view, int width, int height);
 	~AEOpenGLHandler();
 
 	/**
@@ -106,9 +107,9 @@ public:
 	*/
 	void paint(std::vector<QVector3D> &point, QVector3D &color, GLenum primitive_type);
 private:
-	AEOpenGLHandleState state;
-	AEOpenGLHandleData data_type;
-	AEOpenGLHandleView view_type;
+	AEOpenGLHandlerState state;
+	AEOpenGLHandlerData data_type;
+	AEOpenGLHandlerView view_type;
 
 	Data *data;
 	AEOpenGLViewer *window;
@@ -118,7 +119,7 @@ private:
 	int importVertex();
 };
 
-inline void AEOpenGLHandler::setData(Data *data) { clean(); this->data = data; state = AEOpenGLHandleState::DataImported; }
+inline void AEOpenGLHandler::setData(Data *data) { clean(); this->data = data; state = AEOpenGLHandlerState::DataImported; }
 
 inline int AEOpenGLHandler::importDataFromFile(QString filename) { return importDataFromFile(filename, QVector3D(-1, -1, -1)); }
 inline int AEOpenGLHandler::setProjectionWidth(float projection_width) { return window->setProjectionWidth(projection_width); }

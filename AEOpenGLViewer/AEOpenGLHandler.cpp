@@ -5,11 +5,11 @@
 #include "DataLIDAR.h"
 
 
-AEOpenGLHandler::AEOpenGLHandler() : view_type(AEOpenGLHandleView::AnomalyWindow), state(AEOpenGLHandleState::Created) {
+AEOpenGLHandler::AEOpenGLHandler() : view_type(AEOpenGLHandlerView::AnomalyWindow), state(AEOpenGLHandlerState::Created) {
 	initialize(800, 600);
 }
 
-AEOpenGLHandler::AEOpenGLHandler(AEOpenGLHandleView view, int width, int height) : view_type(view), state(AEOpenGLHandleState::Created) {
+AEOpenGLHandler::AEOpenGLHandler(AEOpenGLHandlerView view, int width, int height) : view_type(view), state(AEOpenGLHandlerState::Created) {
 	initialize(width, height);
 }
 
@@ -24,11 +24,11 @@ void AEOpenGLHandler::initialize(int width, int height) {
 	default:
 		window = new AnomalyGLWindow(width, height);
 		data = new DataLIDAR();
-		data_type = AEOpenGLHandleData::LIDAR;
+		data_type = AEOpenGLHandlerData::LIDAR;
 		break;
 	}
 
-	state = AEOpenGLHandleState::Created;
+	state = AEOpenGLHandlerState::Created;
 }
 
 int AEOpenGLHandler::importDataFromFile(QString filename, QVector3D color) {
@@ -46,7 +46,7 @@ int AEOpenGLHandler::importDataFromFile(QString filename, QVector3D color) {
 	if (success != 0)
 		return success;
 
-	state = AEOpenGLHandleState::DataImported;
+	state = AEOpenGLHandlerState::DataImported;
 	success = importVertex();
 
 	return success;
@@ -57,7 +57,7 @@ int AEOpenGLHandler::importDataFromVector(std::vector<PointT> &vector) {
 	if (success != 0)
 		return success;
 
-	state = AEOpenGLHandleState::DataImported;
+	state = AEOpenGLHandlerState::DataImported;
 	success = importVertex();
 	return success;
 }
@@ -68,7 +68,7 @@ int AEOpenGLHandler::importDataFromVector(std::vector<PointT>& vector, QVector3D
 }
 
 int AEOpenGLHandler::setProjectionLine(QVector3D ori, QVector3D dst) {
-	if (view_type != AEOpenGLHandleView::AnomalyWindow || data_type != AEOpenGLHandleData::LIDAR)
+	if (view_type != AEOpenGLHandlerView::AnomalyWindow || data_type != AEOpenGLHandlerData::LIDAR)
 		return -1;
 
 	std::vector<Vertex> projection_line_vertices;
@@ -81,17 +81,17 @@ int AEOpenGLHandler::setProjectionLine(QVector3D ori, QVector3D dst) {
 }
 
 int AEOpenGLHandler::importVertex() {
-	if (state != AEOpenGLHandleState::DataImported)
+	if (state != AEOpenGLHandlerState::DataImported)
 		return -1; //Cannot import vertex without data
 
 	window->setVertices(data->getVertices(), GL_POINTS);
 
-	state = AEOpenGLHandleState::VertexImported;
+	state = AEOpenGLHandlerState::VertexImported;
 	return 0;
 }
 
 int AEOpenGLHandler::show() {
-	if (state != AEOpenGLHandleState::VertexImported)
+	if (state != AEOpenGLHandlerState::VertexImported)
 		return -1;
 
 	window->show();
@@ -102,11 +102,11 @@ void AEOpenGLHandler::clean() {
 	window->cleanGL();
 	data->clear();
 
-	state = AEOpenGLHandleState::Cleansed;
+	state = AEOpenGLHandlerState::Cleansed;
 }
 
 int AEOpenGLHandler::setView(AnomalyView type) {
-	if (view_type != AEOpenGLHandleView::AnomalyWindow && data_type != AEOpenGLHandleData::LIDAR)
+	if (view_type != AEOpenGLHandlerView::AnomalyWindow && data_type != AEOpenGLHandlerData::LIDAR)
 		return -1;
 	else {
 		switch (type) {
@@ -129,7 +129,7 @@ int AEOpenGLHandler::setView(AnomalyView type) {
 }
 
 int AEOpenGLHandler::setView(AnomalyView type, QVector3D center) {
-	if (view_type != AEOpenGLHandleView::AnomalyWindow && data_type != AEOpenGLHandleData::LIDAR)
+	if (view_type != AEOpenGLHandlerView::AnomalyWindow && data_type != AEOpenGLHandlerData::LIDAR)
 		return -1;
 	else {
 		QVector3D anomaly = data->getVertexCoordFromPoint(center);

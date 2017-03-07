@@ -6,6 +6,7 @@
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
 
+#include "aeopenglviewer_global.h"
 #include "Data.h"
 #include "Vertex.h"
 #include "aelas.h"
@@ -21,7 +22,7 @@ static const float CenterUnknownValue = std::numeric_limits<float>::min();
 *	This class is used to represent LIDAR data in a OpenGL view. It contains a pcl::PointCloud wich contains the
 *	LIDAR points and it converts them in OpenGL Vertex.
 */
-class DataLIDAR : public Data {
+class AEOPENGLVIEWER_EXPORT DataLIDAR : public Data {
 public:
 	DataLIDAR();
 	~DataLIDAR();

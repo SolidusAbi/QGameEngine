@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Vertex.h"
 #include <pcl/point_types.h>
+
+#include "aeopenglviewer_global.h"
+#include "Vertex.h"
 
 typedef pcl::PointXYZRGB PointT;
 
@@ -9,7 +11,7 @@ typedef pcl::PointXYZRGB PointT;
 *	@class Data
 *	@brief This class is used in order to control the world coordinate and transforms it in OpenGL Coordinate.
 */
-class Data {
+class AEOPENGLVIEWER_EXPORT Data {
 public:
 	virtual int importData(QString filename) = 0;
 	virtual int importData(QString filename, QVector3D color) = 0;
