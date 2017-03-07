@@ -7,8 +7,8 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	AEOpenGLHandler handler(AEOpenGLHandlerView::AnomalyWindow, 800, 600);
 	Test w;
+	w.laPrueba();
 	w.show();
 	return a.exec();
 }

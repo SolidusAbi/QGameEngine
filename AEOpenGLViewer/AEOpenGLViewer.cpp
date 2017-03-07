@@ -35,21 +35,21 @@ const std::string fragmentShader = {
 
 AEOpenGLViewer::AEOpenGLViewer() : move_configuration(GLWindowMoveConfig::Freedom), view_configuration(GLWindowViewConfig::Perspective),
 ortho_clipping(100.0f), ortho_width(150.0f), vertical_angle(45.0f), mousePrevPosition(QCursor::pos()) {
-
+	setMouseTracking(true);
 	initialize(800, 600);
 }
 
 AEOpenGLViewer::AEOpenGLViewer(GLWindowViewConfig viewConf, GLWindowMoveConfig moveConfig) : mousePrevPosition(QCursor::pos()) {
 	move_configuration = moveConfig;
 	view_configuration = viewConf;
-
+	setMouseTracking(true);
 	initialize(800, 600);
 }
 
 AEOpenGLViewer::AEOpenGLViewer(GLWindowViewConfig viewConf, GLWindowMoveConfig moveConfig, int width, int height) : mousePrevPosition(QCursor::pos()) {
 	move_configuration = moveConfig;
 	view_configuration = viewConf;
-
+	setMouseTracking(true);
 	initialize(width, height);
 }
 
@@ -325,6 +325,7 @@ void AEOpenGLViewer::update() {
 }
 
 void AEOpenGLViewer::keyPressEvent(QKeyEvent *event) {
+	qDebug() << "AEOpenGLViewer::keyPressEvent()";
 	if (event->isAutoRepeat())
 		event->ignore();
 

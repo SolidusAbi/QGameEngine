@@ -14,7 +14,7 @@ AEOpenGLHandler::AEOpenGLHandler(AEOpenGLHandlerView view, int width, int height
 }
 
 AEOpenGLHandler::~AEOpenGLHandler() {
-	delete window;
+	delete viewer;
 	delete data;
 }
 
@@ -22,7 +22,7 @@ void AEOpenGLHandler::initialize(int width, int height) {
 	switch (view_type) {
 	case AnomalyWindow:
 	default:
-		window = new AnomalyGLWindow(width, height);
+		viewer = new AnomalyGLWindow(width, height);
 		data = new DataLIDAR();
 		data_type = AEOpenGLHandlerData::LIDAR;
 		break;
@@ -75,7 +75,7 @@ int AEOpenGLHandler::setProjectionLine(QVector3D ori, QVector3D dst) {
 	Vertex ori_vertex = Vertex(data->getVertexCoordFromPoint(ori), QVector3D(255, 255, 255));
 	Vertex dest_vertex = Vertex(data->getVertexCoordFromPoint(dst), QVector3D(255, 255, 255));
 
-	static_cast<AnomalyGLWindow *>(window)->setProjectionLine(ori_vertex, dest_vertex);
+	static_cast<AnomalyGLWindow *>(viewer)->setProjectionLine(ori_vertex, dest_vertex);
 
 	return 0;
 }
@@ -84,7 +84,7 @@ int AEOpenGLHandler::importVertex() {
 	if (state != AEOpenGLHandlerState::DataImported)
 		return -1; //Cannot import vertex without data
 
-	window->setVertices(data->getVertices(), GL_POINTS);
+	viewer->setVertices(data->getVertices(), GL_POINTS);
 
 	state = AEOpenGLHandlerState::VertexImported;
 	return 0;
@@ -94,12 +94,12 @@ int AEOpenGLHandler::show() {
 	if (state != AEOpenGLHandlerState::VertexImported)
 		return -1;
 
-	window->show();
+	viewer->show();
 	return 0;
 }
 
 void AEOpenGLHandler::clean() {
-	window->cleanGL();
+	viewer->cleanGL();
 	data->clear();
 
 	state = AEOpenGLHandlerState::Cleansed;
@@ -111,13 +111,13 @@ int AEOpenGLHandler::setView(AnomalyView type) {
 	else {
 		switch (type) {
 		case AnomalyView::top:
-			static_cast<AnomalyGLWindow *>(window)->topView();
+			static_cast<AnomalyGLWindow *>(viewer)->topView();
 			break;
 		case AnomalyView::cross:
-			static_cast<AnomalyGLWindow *>(window)->crossView();
+			static_cast<AnomalyGLWindow *>(viewer)->crossView();
 			break;
 		case AnomalyView::longitudinal:
-			static_cast<AnomalyGLWindow *>(window)->longitudinalView();
+			static_cast<AnomalyGLWindow *>(viewer)->longitudinalView();
 			break;
 		case AnomalyView::none:
 		default:
@@ -136,13 +136,13 @@ int AEOpenGLHandler::setView(AnomalyView type, QVector3D center) {
 
 		switch (type) {
 		case AnomalyView::top:
-			static_cast<AnomalyGLWindow *>(window)->topView(anomaly);
+			static_cast<AnomalyGLWindow *>(viewer)->topView(anomaly);
 			break;
 		case AnomalyView::cross:
-			static_cast<AnomalyGLWindow *>(window)->crossView(anomaly);
+			static_cast<AnomalyGLWindow *>(viewer)->crossView(anomaly);
 			break;
 		case AnomalyView::longitudinal:
-			static_cast<AnomalyGLWindow *>(window)->longitudinalView(anomaly);
+			static_cast<AnomalyGLWindow *>(viewer)->longitudinalView(anomaly);
 			break;
 		case AnomalyView::none:
 		default:
@@ -163,5 +163,5 @@ void AEOpenGLHandler::paint(std::vector<QVector3D>& point, QVector3D & color, GL
 		vertices.push_back(Vertex(vertex_coord, color));
 	}
 
-	window->setVertices(vertices, primitive_type);
+	viewer->setVertices(vertices, primitive_type);
 }

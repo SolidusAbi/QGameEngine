@@ -55,6 +55,8 @@ public:
 	*/
 	void setData(Data *data);
 
+	AEOpenGLViewer* getViewer();
+
 	/**
 	*	@brief Importing data from a PCD or LAS file.
 	*	@param filename	file from will be data imported
@@ -112,7 +114,7 @@ private:
 	AEOpenGLHandlerView view_type;
 
 	Data *data;
-	AEOpenGLViewer *window;
+	AEOpenGLViewer *viewer;
 
 	//Private Helpers
 	void initialize(int width, int height);
@@ -120,9 +122,10 @@ private:
 };
 
 inline void AEOpenGLHandler::setData(Data *data) { clean(); this->data = data; state = AEOpenGLHandlerState::DataImported; }
+inline AEOpenGLViewer* AEOpenGLHandler::getViewer() { return viewer; };
 
 inline int AEOpenGLHandler::importDataFromFile(QString filename) { return importDataFromFile(filename, QVector3D(-1, -1, -1)); }
-inline int AEOpenGLHandler::setProjectionWidth(float projection_width) { return window->setProjectionWidth(projection_width); }
-inline int AEOpenGLHandler::setProjectionDepth(float projection_deep) { return window->setProjectionClippingDepth(projection_deep); }
+inline int AEOpenGLHandler::setProjectionWidth(float projection_width) { return viewer->setProjectionWidth(projection_width); }
+inline int AEOpenGLHandler::setProjectionDepth(float projection_depth) { return viewer->setProjectionClippingDepth(projection_depth); }
 
 #endif //AEOPENGLHANDLE_H

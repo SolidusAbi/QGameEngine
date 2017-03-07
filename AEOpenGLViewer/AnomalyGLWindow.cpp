@@ -177,11 +177,11 @@ void AnomalyGLWindow::mouseMoveEvent(QMouseEvent * event) {
 	QVector3D cursor_point = QVector3D(mouseCurrPosition.x(), height() - mouseCurrPosition.y(), 1);
 	QVector3D cursor_prev_point = QVector3D(mousePrevPosition.x(), height() - mousePrevPosition.y(), 1);
 
-	QVector3D cursor_delta2 = cursor_point - cursor_prev_point;
+	QVector3D cursor_delta = cursor_point - cursor_prev_point;
 
 	if (button_pressed) {
-		float steps_x = cursor_delta2.x() * ortho_width / width();
-		float steps_y = cursor_delta2.y() * ortho_width / height();
+		float steps_x = cursor_delta.x() * ortho_width / width();
+		float steps_y = cursor_delta.y() * ortho_width / height();
 
 		// Movement based in setOrthogonalProjection method.
 		if (width() <= height()) {
