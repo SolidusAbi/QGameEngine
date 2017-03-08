@@ -4,8 +4,9 @@
 #define VERTEX_H
 
 #include <QVector3D>
+#include "aeopenglviewer_global.h"
 
-class Vertex {
+class AEOPENGLVIEWER_EXPORT Vertex {
 public:
 	Vertex();
 	Vertex(const QVector3D &position);

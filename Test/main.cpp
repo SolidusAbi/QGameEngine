@@ -8,7 +8,8 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	Test w;
-	w.laPrueba();
+	w.laPrueba2();
+	//w.print2();
 	w.show();
 	return a.exec();
 }

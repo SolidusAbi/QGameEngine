@@ -198,17 +198,20 @@ void AEOpenGLViewer::setPerspectiveProjection(int width, int height) {
 }
 
 void AEOpenGLViewer::prepareObjectInGPU(GLObject globject) {
+
+	GLObject prueba = objects.at(objects.size() - 1);
+
 	shader_program->bind();
 	{
 		// Create Buffer (Do not release until VAO is created) (vbo)
-		globject.vbo->create();
-		globject.vbo->bind();
-		globject.vbo->setUsagePattern(QOpenGLBuffer::StaticDraw);
-		globject.vbo->allocate(globject.vertices.data(), globject.vertices.size() * sizeof(Vertex));
+		prueba.vbo->create();
+		prueba.vbo->bind();
+		prueba.vbo->setUsagePattern(QOpenGLBuffer::StaticDraw);
+		prueba.vbo->allocate(globject.vertices.data(), globject.vertices.size() * sizeof(Vertex));
 
 		// Create Vertex Array Object (vao)
-		globject.vao->create();
-		globject.vao->bind();
+		prueba.vao->create();
+		prueba.vao->bind();
 
 		shader_program->enableAttributeArray(0);
 		shader_program->enableAttributeArray(1);
@@ -216,8 +219,8 @@ void AEOpenGLViewer::prepareObjectInGPU(GLObject globject) {
 		shader_program->setAttributeBuffer(1, GL_FLOAT, Vertex::colorOffset(), Vertex::ColorTupleSize, Vertex::stride());
 
 		// Release (unbind) all
-		globject.vbo->release();
-		globject.vao->release();
+		prueba.vbo->release();
+		prueba.vao->release();
 	}
 	shader_program->release();
 }

@@ -12,7 +12,7 @@
 *	@class AnomalyGLWindow
 *	@brief QOpenGLWindow used in Anomaly Report. It is designed to use AEROLASER LIDAR data acquired from helicopter.
 */
-class AnomalyGLWindow : public AEOpenGLViewer {
+class AEOPENGLVIEWER_EXPORT AnomalyGLWindow : public AEOpenGLViewer {
 
 	enum AnomalyView {
 		top,
@@ -90,9 +90,9 @@ private:
 										// Anomaly Information 
 	QVector3D anomaly_point;			//Anomaly point closest to the line
 
-										/**
-										*	@brief reseting the camera, camera will be centered in the anomaly point.
-										*/
+	/**
+	*	@brief reseting the camera, camera will be centered in the anomaly point.
+	*/
 	void reset();
 
 	/**

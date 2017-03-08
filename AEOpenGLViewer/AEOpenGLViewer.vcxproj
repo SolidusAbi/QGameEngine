@@ -45,7 +45,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(OutDir)\$(ProjectName)d.dll</OutputFile>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\Programacion\Lib\Install\v140\PCL 1.8.0\lib;C:\Programacion\Lib\Install\v140\PCL 1.8.0\3rdParty\Boost\lib;C:\Programacion\Lib\Install\v140\AE_DataTypes\lib;C:\Programacion\Lib\Install\v140\AeGeneralUtility\lib;C:\Programacion\Lib\Install\v140\AELas\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5Widgetsd.lib;Qt5Guid.lib;AE_DataTypesd.lib;AeLasd.lib;AeGeneralUtilityd.lib;pcl_common_debug.lib;pcl_io_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>

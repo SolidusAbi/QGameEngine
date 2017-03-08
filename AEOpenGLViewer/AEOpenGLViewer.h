@@ -8,6 +8,7 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
 #include <QMatrix4x4>
+#include <QTimer>
 
 #include "aeopenglviewer_global.h"
 #include "Transform3D.h"
@@ -191,5 +192,4 @@ inline void AEOpenGLViewer::setClippingValue(float clipping_value) { ortho_clipp
 inline bool AEOpenGLViewer::toImage(QString img) { return toImage(img, 800, 600); }
 
 #endif // GLWINDOW_H
-
 
