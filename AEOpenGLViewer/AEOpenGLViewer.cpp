@@ -61,7 +61,6 @@ AEOpenGLViewer::~AEOpenGLViewer() {
 void AEOpenGLViewer::initialize(int width, int height) {
 	QSurfaceFormat format;
 	format.setRenderableType(QSurfaceFormat::OpenGL);
-	format.setVersion(3, 2);
 	format.setProfile(QSurfaceFormat::CoreProfile);
 	format.setSwapInterval(1);
 	setFormat(format);
@@ -115,10 +114,10 @@ void AEOpenGLViewer::initializeGL() {
 }
 
 void AEOpenGLViewer::paintGL() {
-	makeCurrent();
+	//makeCurrent();
 	renderGL();
-	doneCurrent();
-	QOpenGLWidget::paintGL();
+	/*doneCurrent();
+	QOpenGLWidget::paintGL();*/
 }
 
 void AEOpenGLViewer::resizeGL(int width, int height) {
@@ -145,6 +144,8 @@ void AEOpenGLViewer::cleanGL() {
 		delete objects.at(i).vao;
 	}
 	objects.clear();
+
+	update();
 }
 
 void AEOpenGLViewer::renderGL() {
@@ -198,6 +199,7 @@ void AEOpenGLViewer::setPerspectiveProjection(int width, int height) {
 }
 
 void AEOpenGLViewer::prepareObjectInGPU(GLObject globject) {
+	makeCurrent();
 	shader_program->bind();
 	{
 		// Create Buffer (Do not release until VAO is created) (vbo)
@@ -220,6 +222,7 @@ void AEOpenGLViewer::prepareObjectInGPU(GLObject globject) {
 		globject.vao->release();
 	}
 	shader_program->release();
+	doneCurrent();
 }
 
 void AEOpenGLViewer::setVertices(std::vector<Vertex> vertices, GLenum primitive) {

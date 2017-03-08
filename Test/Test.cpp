@@ -65,10 +65,10 @@ void Test::laPrueba2() {
 void Test::keyPressEvent(QKeyEvent *event) {
 	if (event->key() == Qt::Key_I) {
 		//handler->importDataFromFile("C:\\Users\\ahguedes\\Desktop\\Datos\\cables.pcd", QVector3D(0, 255, 255));
- 		DataLIDAR data2;
+ 		/*DataLIDAR data2;
  		data2.importData("C:\\Users\\ahguedes\\Desktop\\Datos\\cables.pcd", QVector3D(0, 255, 255));
  		std::vector<Vertex> prueba = data2.getVertices();
- 		w->setVertices(prueba, GL_POINTS);
+ 		w->setVertices(prueba, GL_POINTS);*/
 
 // 		std::vector<Vertex> estomismo;
 // 		estomismo.push_back(Vertex(QVector3D(-70064.4, 35863.5, 1214), QVector3D(255, 255, 255)));

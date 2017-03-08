@@ -191,6 +191,9 @@ void DataLIDAR::generateVertex(QVector3D color) {
 		PointT point = point_cloud->points.at(point_index);
 		QVector3D coord((float)(point.x - center_xyz[0]), (float)(point.y - center_xyz[1]), (float)(point.z - center_xyz[2]));
 		vertex_list.push_back(Vertex(coord, color));
+
+		if (point_index > 4000000)
+			break;
 	}
 }
 
