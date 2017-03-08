@@ -4,14 +4,14 @@
 
 Test::Test(QWidget *parent) : QMainWindow(parent) {
 	ui.setupUi(this);
-	//handler = new AEOpenGLHandler(AEOpenGLHandlerView::AnomalyWindow, 800, 600);
-	//handler->getViewer()->setFocusPolicy(Qt::ClickFocus);
+	handler = new AEOpenGLHandler(AEOpenGLHandlerView::AnomalyWindow, 800, 600);
+	handler->getViewer()->setFocusPolicy(Qt::ClickFocus);
 
-	data = new DataLIDAR();
-	w = new AnomalyGLWindow(800, 600);
+	//data = new DataLIDAR();
+	//w = new AnomalyGLWindow(800, 600);
 
-	//setCentralWidget(handler->getViewer());
-	setCentralWidget(w);
+	setCentralWidget(handler->getViewer());
+	//setCentralWidget(w);
 }
 
 void Test::laPrueba() {
@@ -74,19 +74,19 @@ void Test::keyPressEvent(QKeyEvent *event) {
 // 		estomismo.push_back(Vertex(QVector3D(-70064.4, 35863.5, 1214), QVector3D(255, 255, 255)));
 // 		estomismo.push_back(Vertex(QVector3D(-70061.8, 35876.9, 1847.2) , QVector3D(255, 255, 255)));
 // 		w->setVertices(estomismo, GL_LINES);
-		//print();
-		print2();
+		print();
+		//print2();
 	}
-	if (event->key() == Qt::Key_P) {
+	/*if (event->key() == Qt::Key_P) {
 		prueba += 100;
 
 		std::vector<Vertex> estomismo;
 		estomismo.push_back(Vertex(QVector3D(0, 0+prueba, 0), QVector3D(255, 255, 255)));
 		estomismo.push_back(Vertex(QVector3D(1000, 100+prueba, 0), QVector3D(255, 255, 255)));
 		w->setVertices(estomismo, GL_LINES);
-	}	
+	}*/	
 	if (event->key() == Qt::Key_O)
-		w->cleanGL();
+		handler->clean();
 }
 
 void Test::print() {

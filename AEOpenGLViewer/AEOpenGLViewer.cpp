@@ -114,10 +114,7 @@ void AEOpenGLViewer::initializeGL() {
 }
 
 void AEOpenGLViewer::paintGL() {
-	//makeCurrent();
 	renderGL();
-	/*doneCurrent();
-	QOpenGLWidget::paintGL();*/
 }
 
 void AEOpenGLViewer::resizeGL(int width, int height) {
@@ -333,7 +330,6 @@ void AEOpenGLViewer::update() {
 }
 
 void AEOpenGLViewer::keyPressEvent(QKeyEvent *event) {
-	qDebug() << "AEOpenGLViewer::keyPressEvent()";
 	if (event->isAutoRepeat())
 		event->ignore();
 
