@@ -63,7 +63,7 @@
     <ClCompile Include="AEOpenGLHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnomalyViewer.cpp">
+    <ClCompile Include="AEOrthoViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +89,7 @@
     <ClInclude Include="AEOpenGLHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnomalyViewer.h">
+    <ClInclude Include="AEOrthoViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

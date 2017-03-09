@@ -12,14 +12,14 @@
 *	@class AnomalyGLWindow
 *	@brief QOpenGLWindow used in Anomaly Report. It is designed to use AEROLASER LIDAR data acquired from helicopter.
 */
-class AEOPENGLVIEWER_EXPORT AnomalyViewer : public AEOpenGLViewer {
+class AEOPENGLVIEWER_EXPORT AEOrthoViewer : public AEOpenGLViewer {
 
 public:
-	AnomalyViewer();
-	AnomalyViewer(int width, int height);
-	AnomalyViewer(Vertex line_coord_0, Vertex line_coord_1);
-	AnomalyViewer(Vertex line_coord_0, Vertex line_coord_1, int window_width, int window_height);
-	~AnomalyViewer();
+	AEOrthoViewer();
+	AEOrthoViewer(int width, int height);
+	AEOrthoViewer(Vertex line_coord_0, Vertex line_coord_1);
+	AEOrthoViewer(Vertex line_coord_0, Vertex line_coord_1, int window_width, int window_height);
+	~AEOrthoViewer();
 
 	void setProjectionLine(Vertex coord_0, Vertex coord_1);
 	std::vector<Vertex> getProjectionLineVertices();
@@ -97,15 +97,15 @@ protected:
 	void mouseMoveEvent(QMouseEvent * event);
 };
 
-inline bool AnomalyViewer::lineDataPrepare() { return (projection_line_vertices.empty() ? false : true); }
+inline bool AEOrthoViewer::lineDataPrepare() { return (projection_line_vertices.empty() ? false : true); }
 
-template <typename T> inline void AnomalyViewer::setAnomalyPoint(T x, T y, T z) { setAnomalyPoint(QVector3D(x, y, z)); }
-inline QVector3D AnomalyViewer::anomalyPoint() { return anomaly_point; }
+template <typename T> inline void AEOrthoViewer::setAnomalyPoint(T x, T y, T z) { setAnomalyPoint(QVector3D(x, y, z)); }
+inline QVector3D AEOrthoViewer::anomalyPoint() { return anomaly_point; }
 
-inline std::vector<Vertex> AnomalyViewer::getProjectionLineVertices() { return projection_line_vertices; }
+inline std::vector<Vertex> AEOrthoViewer::getProjectionLineVertices() { return projection_line_vertices; }
 
-template <typename T> inline int AnomalyViewer::topView(T x, T y, T z) { return topView(QVector3D(x, y, z)); }
-template <typename T> inline int AnomalyViewer::crossView(T x, T y, T z) { return crossView(QVector3D(x, y, z)); }
-template <typename T> inline int AnomalyViewer::longitudinalView(T x, T y, T z) { return longitudinalView(QVector3D(x, y, z)); }
+template <typename T> inline int AEOrthoViewer::topView(T x, T y, T z) { return topView(QVector3D(x, y, z)); }
+template <typename T> inline int AEOrthoViewer::crossView(T x, T y, T z) { return crossView(QVector3D(x, y, z)); }
+template <typename T> inline int AEOrthoViewer::longitudinalView(T x, T y, T z) { return longitudinalView(QVector3D(x, y, z)); }
 
 #endif // ANOMALYGLWINDOW_H

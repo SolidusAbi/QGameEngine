@@ -10,7 +10,7 @@
 #include "Vertex.h"
 
 enum AEOpenGLHandlerView {
-	AnomalyWindow,
+	OrthogonalViewer,
 	Default
 };
 

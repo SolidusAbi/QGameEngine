@@ -1,11 +1,11 @@
 #include <QDebug>
 
 #include "AEOpenGLHandler.h"
-#include "AnomalyViewer.h"
+#include "AEOrthoViewer.h"
 #include "DataLIDAR.h"
 
 
-AEOpenGLHandler::AEOpenGLHandler() : view_type(AEOpenGLHandlerView::AnomalyWindow), state(AEOpenGLHandlerState::Created) {
+AEOpenGLHandler::AEOpenGLHandler() : view_type(AEOpenGLHandlerView::OrthogonalViewer), state(AEOpenGLHandlerState::Created) {
 	initialize(800, 600);
 }
 
@@ -20,12 +20,12 @@ AEOpenGLHandler::~AEOpenGLHandler() {
 
 void AEOpenGLHandler::initialize(int width, int height) {
 	switch (view_type) {
-	case AnomalyWindow:
-	default:
-		viewer = new AnomalyViewer(width, height);
-		data = new DataLIDAR();
-		data_type = AEOpenGLHandlerData::LIDAR;
-		break;
+		case OrthogonalViewer:
+		default:
+			viewer = new AEOrthoViewer(width, height);
+			data = new DataLIDAR();
+			data_type = AEOpenGLHandlerData::LIDAR;
+			break;
 	}
 
 	state = AEOpenGLHandlerState::Created;
@@ -68,14 +68,14 @@ int AEOpenGLHandler::importDataFromVector(std::vector<PointT>& vector, QVector3D
 }
 
 int AEOpenGLHandler::setProjectionLine(QVector3D ori, QVector3D dst) {
-	if (view_type != AEOpenGLHandlerView::AnomalyWindow || data_type != AEOpenGLHandlerData::LIDAR)
+	if (view_type != AEOpenGLHandlerView::OrthogonalViewer || data_type != AEOpenGLHandlerData::LIDAR)
 		return -1;
 
 	std::vector<Vertex> projection_line_vertices;
 	Vertex ori_vertex = Vertex(data->getVertexCoordFromPoint(ori), QVector3D(255, 255, 255));
 	Vertex dest_vertex = Vertex(data->getVertexCoordFromPoint(dst), QVector3D(255, 255, 255));
 
-	static_cast<AnomalyViewer *>(viewer)->setProjectionLine(ori_vertex, dest_vertex);
+	static_cast<AEOrthoViewer *>(viewer)->setProjectionLine(ori_vertex, dest_vertex);
 
 	return 0;
 }
@@ -91,8 +91,8 @@ int AEOpenGLHandler::importVertex() {
 }
 
 int AEOpenGLHandler::show() {
-	if (state != AEOpenGLHandlerState::VertexImported)
-		return -1;
+	/*if (state != AEOpenGLHandlerState::VertexImported)
+		return -1;*/
 
 	viewer->show();
 	return 0;
@@ -106,18 +106,18 @@ void AEOpenGLHandler::clean() {
 }
 
 int AEOpenGLHandler::setView(AnomalyView type) {
-	if (view_type != AEOpenGLHandlerView::AnomalyWindow && data_type != AEOpenGLHandlerData::LIDAR)
+	if (view_type != AEOpenGLHandlerView::OrthogonalViewer && data_type != AEOpenGLHandlerData::LIDAR)
 		return -1;
 	else {
 		switch (type) {
 		case AnomalyView::top:
-			static_cast<AnomalyViewer *>(viewer)->topView();
+			static_cast<AEOrthoViewer *>(viewer)->topView();
 			break;
 		case AnomalyView::cross:
-			static_cast<AnomalyViewer *>(viewer)->crossView();
+			static_cast<AEOrthoViewer *>(viewer)->crossView();
 			break;
 		case AnomalyView::longitudinal:
-			static_cast<AnomalyViewer *>(viewer)->longitudinalView();
+			static_cast<AEOrthoViewer *>(viewer)->longitudinalView();
 			break;
 		case AnomalyView::none:
 		default:
@@ -129,20 +129,20 @@ int AEOpenGLHandler::setView(AnomalyView type) {
 }
 
 int AEOpenGLHandler::setView(AnomalyView type, QVector3D center) {
-	if (view_type != AEOpenGLHandlerView::AnomalyWindow && data_type != AEOpenGLHandlerData::LIDAR)
+	if (view_type != AEOpenGLHandlerView::OrthogonalViewer && data_type != AEOpenGLHandlerData::LIDAR)
 		return -1;
 	else {
 		QVector3D anomaly = data->getVertexCoordFromPoint(center);
 
 		switch (type) {
 		case AnomalyView::top:
-			static_cast<AnomalyViewer *>(viewer)->topView(anomaly);
+			static_cast<AEOrthoViewer *>(viewer)->topView(anomaly);
 			break;
 		case AnomalyView::cross:
-			static_cast<AnomalyViewer *>(viewer)->crossView(anomaly);
+			static_cast<AEOrthoViewer *>(viewer)->crossView(anomaly);
 			break;
 		case AnomalyView::longitudinal:
-			static_cast<AnomalyViewer *>(viewer)->longitudinalView(anomaly);
+			static_cast<AEOrthoViewer *>(viewer)->longitudinalView(anomaly);
 			break;
 		case AnomalyView::none:
 		default:

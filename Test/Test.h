@@ -4,7 +4,7 @@
 #include <QtWidgets/QDockWidget>
 #include <AEOpenGLHandler.h>
 #include <DataLIDAR.h>
-#include <AnomalyViewer.h>
+#include <AEOrthoViewer.h>
 
 #include "ui_Test.h"
 

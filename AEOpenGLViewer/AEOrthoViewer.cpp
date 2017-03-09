@@ -4,32 +4,32 @@
 #define _USE_MATH_DEFINES
 
 #include "Input.h"
-#include "AnomalyViewer.h"
+#include "AEOrthoViewer.h"
 
-AnomalyViewer::AnomalyViewer() :AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom),
+AEOrthoViewer::AEOrthoViewer() :AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom),
 anomaly_view(AnomalyView::none), anomaly_point(QVector3D(0, 0, 0)) {}
 
-AnomalyViewer::AnomalyViewer(int width, int height) : AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom, width, height),
+AEOrthoViewer::AEOrthoViewer(int width, int height) : AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom, width, height),
 anomaly_view(AnomalyView::none), anomaly_point(QVector3D(0, 0, 0)) {}
 
-AnomalyViewer::AnomalyViewer(Vertex line_coord_0, Vertex line_coord_1) : AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom),
+AEOrthoViewer::AEOrthoViewer(Vertex line_coord_0, Vertex line_coord_1) : AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom),
 anomaly_view(AnomalyView::none), anomaly_point(QVector3D(0, 0, 0)) {
 	setProjectionLine(line_coord_0, line_coord_1);
 }
 
-AnomalyViewer::AnomalyViewer(Vertex line_coord_0, Vertex line_coord_1, int window_width, int window_height) :
+AEOrthoViewer::AEOrthoViewer(Vertex line_coord_0, Vertex line_coord_1, int window_width, int window_height) :
 	AEOpenGLViewer(GLWindowViewConfig::Orthogonal, GLWindowMoveConfig::Freedom, window_width, window_height) {
 	setProjectionLine(line_coord_0, line_coord_1);
 }
 
-AnomalyViewer::~AnomalyViewer() {}
+AEOrthoViewer::~AEOrthoViewer() {}
 
-void AnomalyViewer::setAnomalyPoint(QVector3D anomaly_point) {
+void AEOrthoViewer::setAnomalyPoint(QVector3D anomaly_point) {
 	this->anomaly_point = anomaly_point;
 	reset(); // Centering camera in the anomaly point
 }
 
-void AnomalyViewer::setProjectionLine(Vertex coord_0, Vertex coord_1) {
+void AEOrthoViewer::setProjectionLine(Vertex coord_0, Vertex coord_1) {
 	if (projection_line_vertices.size() > 0)
 		projection_line_vertices.clear();
 
@@ -49,12 +49,12 @@ void AnomalyViewer::setProjectionLine(Vertex coord_0, Vertex coord_1) {
 	//setVertices(std::vector<Vertex>{coord_0, coord_1}, GL_LINES);
 }
 
-int AnomalyViewer::topView(QVector3D anomaly_point) {
+int AEOrthoViewer::topView(QVector3D anomaly_point) {
 	setAnomalyPoint(anomaly_point);
 	return topView();
 }
 
-int AnomalyViewer::topView() {
+int AEOrthoViewer::topView() {
 	if (!lineDataPrepare())
 		return -1;
 
@@ -67,12 +67,12 @@ int AnomalyViewer::topView() {
 	return 0;
 }
 
-int AnomalyViewer::crossView(QVector3D anomaly_point) {
+int AEOrthoViewer::crossView(QVector3D anomaly_point) {
 	setAnomalyPoint(anomaly_point);
 	return crossView();
 }
 
-int AnomalyViewer::crossView() {
+int AEOrthoViewer::crossView() {
 	if (!lineDataPrepare())
 		return -1;
 
@@ -89,12 +89,12 @@ int AnomalyViewer::crossView() {
 	return 0;
 }
 
-int AnomalyViewer::longitudinalView(QVector3D anomaly_point) {
+int AEOrthoViewer::longitudinalView(QVector3D anomaly_point) {
 	setAnomalyPoint(anomaly_point);
 	return longitudinalView();
 }
 
-int AnomalyViewer::longitudinalView() {
+int AEOrthoViewer::longitudinalView() {
 	if (!lineDataPrepare())
 		return -1;
 
@@ -109,7 +109,7 @@ int AnomalyViewer::longitudinalView() {
 	return 0;
 }
 
-void AnomalyViewer::reset() {
+void AEOrthoViewer::reset() {
 	camera.restore();
 
 	//Center the view in the anomaly
@@ -133,7 +133,7 @@ void AnomalyViewer::reset() {
 	}
 }
 
-void AnomalyViewer::inputHandle(int key) {
+void AEOrthoViewer::inputHandle(int key) {
 	// Camera Transformation
 	if (button_pressed) {
 		static const float transSpeed = 1.0f;
@@ -169,7 +169,7 @@ void AnomalyViewer::inputHandle(int key) {
 	}
 }
 
-void AnomalyViewer::mouseMoveEvent(QMouseEvent * event) {
+void AEOrthoViewer::mouseMoveEvent(QMouseEvent * event) {
 	float ratio = width() / float(height());
 	QRect viewport(0, 0, this->width(), this->height());
 
@@ -198,7 +198,7 @@ void AnomalyViewer::mouseMoveEvent(QMouseEvent * event) {
 	mousePrevPosition = mouseCurrPosition;
 }
 
-void AnomalyViewer::wheelEvent(QWheelEvent *event) {
+void AEOrthoViewer::wheelEvent(QWheelEvent *event) {
 	static const float speed = 1.1f;
 
 	if (view_configuration == GLWindowViewConfig::Orthogonal) {

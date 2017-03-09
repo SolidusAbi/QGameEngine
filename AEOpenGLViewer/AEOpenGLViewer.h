@@ -61,14 +61,9 @@ public:
 	/**
 	*	@brief vector with vertex of OpenGL Window.
 	*	@param vertices		vector with vertices.
-	*/
-	void setVertices(std::vector<Vertex> vertices);
-
-	/**
-	*	@brief vector with vertex of OpenGL Window.
-	*	@param vertices		vector with vertices.
 	*	@param primitive	type of vertex (GL_POINTS, GL_LINES...)
 	*/
+	void setVertices(std::vector<Vertex> vertices);
 	void setVertices(std::vector<Vertex> vertices, GLenum primitive);
 
 	/**

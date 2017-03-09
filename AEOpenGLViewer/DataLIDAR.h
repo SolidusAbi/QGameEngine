@@ -6,7 +6,6 @@
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
 
-#include "aeopenglviewer_global.h"
 #include "Data.h"
 #include "Vertex.h"
 #include "aelas.h"
@@ -55,7 +54,7 @@ private:
 	const uint scale_factor = 1; //Scale used to convert LAS data (double) to PCD (float)
 	std::vector<float> center_xyz{ CenterUnknownValue, CenterUnknownValue, CenterUnknownValue }; //Point which is located in the OpenGL coordinate (0, 0)
 
-																								 //This function is used to generate vertex from point cloud data
+	//This function is used to generate vertex from point cloud data
 	void generateVertex();
 	void generateVertex(QVector3D color);
 

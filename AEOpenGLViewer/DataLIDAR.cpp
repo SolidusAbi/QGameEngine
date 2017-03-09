@@ -33,9 +33,11 @@ int DataLIDAR::importData(std::vector<PointT> &point_cloud_vector) {
 		tmpSumZ += tmp.z;
 	}
 
-	center_xyz.push_back(tmpSumX / point_cloud->size());
-	center_xyz.push_back(tmpSumY / point_cloud->size());
-	center_xyz.push_back(tmpSumZ / point_cloud->size());
+	if (center_xyz.empty() || center_xyz.at(0) == CenterUnknownValue) {
+		center_xyz.push_back(tmpSumX / point_cloud->size());
+		center_xyz.push_back(tmpSumY / point_cloud->size());
+		center_xyz.push_back(tmpSumZ / point_cloud->size());
+	}
 
 	generateVertex();
 

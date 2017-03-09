@@ -4,7 +4,7 @@
 
 Test::Test(QWidget *parent) : QMainWindow(parent) {
 	ui.setupUi(this);
-	handler = new AEOpenGLHandler(AEOpenGLHandlerView::AnomalyWindow, 800, 600);
+	handler = new AEOpenGLHandler(AEOpenGLHandlerView::OrthogonalViewer, 800, 600);
 	//handler->getViewer()->setFocusPolicy(Qt::ClickFocus);
 
 	//data = new DataLIDAR();

@@ -72,7 +72,7 @@
   <ItemGroup>
     <ClCompile Include="AEOpenGLHandler.cpp" />
     <ClCompile Include="AEOpenGLViewer.cpp" />
-    <ClCompile Include="AnomalyViewer.cpp" />
+    <ClCompile Include="AEOrthoViewer.cpp" />
     <ClCompile Include="Camera3D.cpp" />
     <ClCompile Include="DataLIDAR.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_AEOpenGLViewer.cpp">
@@ -98,7 +98,7 @@
     </CustomBuild>
     <ClInclude Include="AEOpenGLHandler.h" />
     <ClInclude Include="aeopenglviewer_global.h" />
-    <ClInclude Include="AnomalyViewer.h" />
+    <ClInclude Include="AEOrthoViewer.h" />
     <ClInclude Include="Camera3D.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="DataLIDAR.h" />
