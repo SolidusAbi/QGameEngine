@@ -1,7 +1,7 @@
 #include <QDebug>
 
 #include "AEOpenGLHandler.h"
-#include "AnomalyGLWindow.h"
+#include "AnomalyViewer.h"
 #include "DataLIDAR.h"
 
 
@@ -22,7 +22,7 @@ void AEOpenGLHandler::initialize(int width, int height) {
 	switch (view_type) {
 	case AnomalyWindow:
 	default:
-		viewer = new AnomalyGLWindow(width, height);
+		viewer = new AnomalyViewer(width, height);
 		data = new DataLIDAR();
 		data_type = AEOpenGLHandlerData::LIDAR;
 		break;
@@ -36,7 +36,7 @@ int AEOpenGLHandler::importDataFromFile(QString filename, QVector3D color) {
 	switch (data_type) {
 	case LIDAR:
 	default:
-		if (color == QVector3D(-1, -1, -1))
+		if (color == NoColor)
 			success = data->importData(filename);
 		else
 			success = data->importData(filename, color);
@@ -75,7 +75,7 @@ int AEOpenGLHandler::setProjectionLine(QVector3D ori, QVector3D dst) {
 	Vertex ori_vertex = Vertex(data->getVertexCoordFromPoint(ori), QVector3D(255, 255, 255));
 	Vertex dest_vertex = Vertex(data->getVertexCoordFromPoint(dst), QVector3D(255, 255, 255));
 
-	static_cast<AnomalyGLWindow *>(viewer)->setProjectionLine(ori_vertex, dest_vertex);
+	static_cast<AnomalyViewer *>(viewer)->setProjectionLine(ori_vertex, dest_vertex);
 
 	return 0;
 }
@@ -111,13 +111,13 @@ int AEOpenGLHandler::setView(AnomalyView type) {
 	else {
 		switch (type) {
 		case AnomalyView::top:
-			static_cast<AnomalyGLWindow *>(viewer)->topView();
+			static_cast<AnomalyViewer *>(viewer)->topView();
 			break;
 		case AnomalyView::cross:
-			static_cast<AnomalyGLWindow *>(viewer)->crossView();
+			static_cast<AnomalyViewer *>(viewer)->crossView();
 			break;
 		case AnomalyView::longitudinal:
-			static_cast<AnomalyGLWindow *>(viewer)->longitudinalView();
+			static_cast<AnomalyViewer *>(viewer)->longitudinalView();
 			break;
 		case AnomalyView::none:
 		default:
@@ -136,13 +136,13 @@ int AEOpenGLHandler::setView(AnomalyView type, QVector3D center) {
 
 		switch (type) {
 		case AnomalyView::top:
-			static_cast<AnomalyGLWindow *>(viewer)->topView(anomaly);
+			static_cast<AnomalyViewer *>(viewer)->topView(anomaly);
 			break;
 		case AnomalyView::cross:
-			static_cast<AnomalyGLWindow *>(viewer)->crossView(anomaly);
+			static_cast<AnomalyViewer *>(viewer)->crossView(anomaly);
 			break;
 		case AnomalyView::longitudinal:
-			static_cast<AnomalyGLWindow *>(viewer)->longitudinalView(anomaly);
+			static_cast<AnomalyViewer *>(viewer)->longitudinalView(anomaly);
 			break;
 		case AnomalyView::none:
 		default:

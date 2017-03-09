@@ -42,6 +42,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -71,7 +72,7 @@
   <ItemGroup>
     <ClCompile Include="AEOpenGLHandler.cpp" />
     <ClCompile Include="AEOpenGLViewer.cpp" />
-    <ClCompile Include="AnomalyGLWindow.cpp" />
+    <ClCompile Include="AnomalyViewer.cpp" />
     <ClCompile Include="Camera3D.cpp" />
     <ClCompile Include="DataLIDAR.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_AEOpenGLViewer.cpp">
@@ -97,7 +98,7 @@
     </CustomBuild>
     <ClInclude Include="AEOpenGLHandler.h" />
     <ClInclude Include="aeopenglviewer_global.h" />
-    <ClInclude Include="AnomalyGLWindow.h" />
+    <ClInclude Include="AnomalyViewer.h" />
     <ClInclude Include="Camera3D.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="DataLIDAR.h" />

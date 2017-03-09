@@ -12,21 +12,14 @@
 *	@class AnomalyGLWindow
 *	@brief QOpenGLWindow used in Anomaly Report. It is designed to use AEROLASER LIDAR data acquired from helicopter.
 */
-class AEOPENGLVIEWER_EXPORT AnomalyGLWindow : public AEOpenGLViewer {
-
-	enum AnomalyView {
-		top,
-		cross,
-		longitudinal,
-		none
-	};
+class AEOPENGLVIEWER_EXPORT AnomalyViewer : public AEOpenGLViewer {
 
 public:
-	AnomalyGLWindow();
-	AnomalyGLWindow(int width, int height);
-	AnomalyGLWindow(Vertex line_coord_0, Vertex line_coord_1);
-	AnomalyGLWindow(Vertex line_coord_0, Vertex line_coord_1, int window_width, int window_height);
-	~AnomalyGLWindow();
+	AnomalyViewer();
+	AnomalyViewer(int width, int height);
+	AnomalyViewer(Vertex line_coord_0, Vertex line_coord_1);
+	AnomalyViewer(Vertex line_coord_0, Vertex line_coord_1, int window_width, int window_height);
+	~AnomalyViewer();
 
 	void setProjectionLine(Vertex coord_0, Vertex coord_1);
 	std::vector<Vertex> getProjectionLineVertices();
@@ -83,7 +76,6 @@ private:
 	// Line Information
 	bool lineDataPrepare();
 	std::vector<Vertex> projection_line_vertices;	//line coordinates are a XY point, Z-axis is irrelevant.
-	std::vector<QVector3D> line_points;	//line coordinates are a XY point, Z-axis is irrelevant.
 	float line_slope;
 	double line_angle;					//Inclination angle of the line with respect to the X-axis, in degrees
 
@@ -105,15 +97,15 @@ protected:
 	void mouseMoveEvent(QMouseEvent * event);
 };
 
-inline bool AnomalyGLWindow::lineDataPrepare() { return (projection_line_vertices.empty() ? false : true); }
+inline bool AnomalyViewer::lineDataPrepare() { return (projection_line_vertices.empty() ? false : true); }
 
-template <typename T> inline void AnomalyGLWindow::setAnomalyPoint(T x, T y, T z) { setAnomalyPoint(QVector3D(x, y, z)); }
-inline QVector3D AnomalyGLWindow::anomalyPoint() { return anomaly_point; }
+template <typename T> inline void AnomalyViewer::setAnomalyPoint(T x, T y, T z) { setAnomalyPoint(QVector3D(x, y, z)); }
+inline QVector3D AnomalyViewer::anomalyPoint() { return anomaly_point; }
 
-inline std::vector<Vertex> AnomalyGLWindow::getProjectionLineVertices() { return projection_line_vertices; }
+inline std::vector<Vertex> AnomalyViewer::getProjectionLineVertices() { return projection_line_vertices; }
 
-template <typename T> inline int AnomalyGLWindow::topView(T x, T y, T z) { return topView(QVector3D(x, y, z)); }
-template <typename T> inline int AnomalyGLWindow::crossView(T x, T y, T z) { return crossView(QVector3D(x, y, z)); }
-template <typename T> inline int AnomalyGLWindow::longitudinalView(T x, T y, T z) { return longitudinalView(QVector3D(x, y, z)); }
+template <typename T> inline int AnomalyViewer::topView(T x, T y, T z) { return topView(QVector3D(x, y, z)); }
+template <typename T> inline int AnomalyViewer::crossView(T x, T y, T z) { return crossView(QVector3D(x, y, z)); }
+template <typename T> inline int AnomalyViewer::longitudinalView(T x, T y, T z) { return longitudinalView(QVector3D(x, y, z)); }
 
 #endif // ANOMALYGLWINDOW_H

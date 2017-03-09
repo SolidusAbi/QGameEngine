@@ -14,16 +14,10 @@ enum AEOpenGLHandlerView {
 	Default
 };
 
-enum AnomalyView {
-	top,
-	cross,
-	longitudinal,
-	none
-};
-
-
 class Data;
 class AEOpenGLViewer;
+
+static const QVector3D NoColor = QVector3D(-1, -1, -1);
 
 /**
 *	@class	AEOpenGLHandle
@@ -78,7 +72,15 @@ public:
 	*	@param ori
 	*/
 	int setProjectionLine(QVector3D ori, QVector3D dst);
+
+	/** 
+	*	@brief To show the AEOpenGLViewer
+	*/
 	int show();
+
+	/** 
+	*	@brief To clean the AEOpenGLViewer data.
+	*/
 	void clean();
 
 	/**

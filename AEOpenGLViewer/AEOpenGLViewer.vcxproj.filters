@@ -60,10 +60,10 @@
     <ClCompile Include="GeneratedFiles\Release\moc_AEOpenGLViewer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="AnomalyGLWindow.cpp">
+    <ClCompile Include="AEOpenGLHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AEOpenGLHandler.cpp">
+    <ClCompile Include="AnomalyViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,10 +86,10 @@
     <ClInclude Include="Camera3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnomalyGLWindow.h">
+    <ClInclude Include="AEOpenGLHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AEOpenGLHandler.h">
+    <ClInclude Include="AnomalyViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
