@@ -31,7 +31,6 @@ class QOpenGLShaderProgram;
 *	@class AEOpenGLViewer
 *	@brief This viewer has  used in order to show point clouds.
 */
-
 class AEOPENGLVIEWER_EXPORT AEOpenGLViewer : public QOpenGLWidget, protected QOpenGLFunctions {
 	Q_OBJECT
 
