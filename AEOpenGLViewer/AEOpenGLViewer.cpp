@@ -134,12 +134,14 @@ void AEOpenGLViewer::resizeGL(int width, int height) {
 }
 
 void AEOpenGLViewer::cleanGL() {
+	makeCurrent();
 	for (size_t i = 0; i < objects.size(); ++i) {
-		objects.at(i).vbo->destroy();
 		objects.at(i).vao->destroy();
+		objects.at(i).vbo->destroy();
 		delete objects.at(i).vbo;
 		delete objects.at(i).vao;
 	}
+	doneCurrent();
 	objects.clear();
 	camera.restore();
 
