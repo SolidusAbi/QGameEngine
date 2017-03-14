@@ -76,15 +76,16 @@ int AEOrthoViewer::crossView() {
 	if (!lineDataPrepare())
 		return -1;
 
-	if (anomaly_view != AnomalyView::cross)
-		reset();
+	if (anomaly_view != AnomalyView::cross) {
+		anomaly_view = AnomalyView::cross;
+		reset(AnomalyView::cross);
+	} else
+		settingCrossViewCamera();
 
-	anomaly_view = AnomalyView::cross;
+	/*anomaly_view = AnomalyView::cross;
 
 	camera.rotate(90, Camera3D::LocalRight);
-	camera.rotate(-(line_angle + 90), Camera3D::LocalForward);
-
-	update();
+	camera.rotate(-(line_angle + 90), Camera3D::LocalForward);*/
 
 	return 0;
 }
@@ -97,19 +98,23 @@ int AEOrthoViewer::longitudinalView(QVector3D anomaly_point) {
 int AEOrthoViewer::longitudinalView() {
 	if (!lineDataPrepare())
 		return -1;
-
-	if (anomaly_view != AnomalyView::longitudinal)
-		reset();
-
-	anomaly_view = AnomalyView::longitudinal;
-
-	camera.rotate(90, Camera3D::LocalRight);
-	camera.rotate(-(line_angle + 180), Camera3D::LocalForward);
+	
+	if (anomaly_view != AnomalyView::longitudinal) {
+		anomaly_view = AnomalyView::longitudinal;
+		reset(anomaly_view);
+	} else {
+		settingLongitudinalViewCamera();
+	}
 
 	return 0;
 }
 
-void AEOrthoViewer::reset() {
+void AEOrthoViewer::cleanGL(){
+	anomaly_view = AnomalyView::none;
+	AEOpenGLViewer::cleanGL();
+}
+
+void AEOrthoViewer::reset(AnomalyView view) {
 	camera.restore();
 
 	//Center the view in the anomaly
@@ -117,19 +122,18 @@ void AEOrthoViewer::reset() {
 	camera.translate(camera.up(anomaly_point.y()));
 	camera.translate(-(camera.forward(anomaly_point.z())));
 
-	switch (anomaly_view) {
-	case AnomalyView::top:
-		topView();
-		break;
-	case AnomalyView::cross:
-		crossView();
-		break;
-	case AnomalyView::longitudinal:
-		longitudinalView();
-		break;
-	default:
-		AnomalyView::none;
-		break;
+	switch (view) {
+	    case AnomalyView::top:
+		    topView();
+			break;
+		case AnomalyView::cross:
+			settingCrossViewCamera();
+			break;
+		case AnomalyView::longitudinal:
+			settingLongitudinalViewCamera();
+			break;
+		default:
+			break;
 	}
 }
 
@@ -154,13 +158,10 @@ void AEOrthoViewer::inputHandle(int key) {
 			translation += camera.right();
 			break;
 		case Qt::Key_R:
-			reset();
+			reset(anomaly_view);
 			break;
 		case Qt::Key_C:
 			cleanGL();
-			break;
-		case Qt::Key_I:
-			toImage("C:/Users/ahguedes/Desktop/Prueba/prueba3.png");
 			break;
 		default:
 			break;
@@ -224,4 +225,14 @@ void AEOrthoViewer::wheelEvent(QWheelEvent *event) {
 		setOrthogonalProjection(width(), height());
 		update();
 	}
+}
+
+void AEOrthoViewer::settingLongitudinalViewCamera() {
+	camera.rotate(90, Camera3D::LocalRight);
+	camera.rotate(-(line_angle + 180), Camera3D::LocalForward);
+}
+
+void AEOrthoViewer::settingCrossViewCamera() {
+	camera.rotate(90, Camera3D::LocalRight);
+	camera.rotate(-(line_angle + 90), Camera3D::LocalForward);
 }

@@ -69,6 +69,10 @@ public:
 	int longitudinalView(QVector3D anomaly_point);
 	int longitudinalView();
 
+	/**
+	*	@brief Clean the OpenGL visualization
+	*/
+	void cleanGL();
 private:
 	//View information
 	AnomalyView anomaly_view;
@@ -85,13 +89,19 @@ private:
 	/**
 	*	@brief reseting the camera, camera will be centered in the anomaly point.
 	*/
-	void reset();
+	void reset(AnomalyView view = AnomalyView::none);
+
 
 	/**
 	*	@Brief Handle of the input command, this method must to be implemented
 	*		in each class that inherits from this one.
 	*/
 	void inputHandle(int key);
+
+	// Private Helpers
+	void settingLongitudinalViewCamera();
+	void settingCrossViewCamera();
+
 protected:
 	void wheelEvent(QWheelEvent *event);
 	void mouseMoveEvent(QMouseEvent * event);

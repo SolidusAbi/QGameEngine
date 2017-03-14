@@ -5,7 +5,7 @@
 Test::Test(QWidget *parent) : QMainWindow(parent) {
 	ui.setupUi(this);
 	handler = new AEOpenGLHandler(AEOpenGLHandlerView::OrthogonalViewer, 800, 600);
-	//handler->getViewer()->setFocusPolicy(Qt::ClickFocus);
+	handler->getViewer()->setFocusPolicy(Qt::ClickFocus);
 
 	//data = new DataLIDAR();
 	//w = new AnomalyGLWindow(800, 600);
@@ -56,7 +56,7 @@ void Test::keyPressEvent(QKeyEvent *event) {
 		w->setVertices(estomismo, GL_LINES);
 	}*/	
 	if (event->key() == Qt::Key_O)
-		handler->clean();
+		handler->clear();
 }
 
 void Test::print() {

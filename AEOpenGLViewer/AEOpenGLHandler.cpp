@@ -99,18 +99,10 @@ int AEOpenGLHandler::show() {
 }
 
 void AEOpenGLHandler::clear() {
-	viewer->cleanGL();
-	switch (data_type)
-	{
-	case AEOpenGLHandler::LIDAR:
-		static_cast<DataLIDAR *>(data)->clear();
-		break;
-	default:
-		data->clear();
-		break;
-	}
+	clearViewer();
+	clearData();
 
-	state = AEOpenGLHandlerState::Cleansed;
+	state = AEOpenGLHandlerState::Clean;
 }
 
 int AEOpenGLHandler::setView(AnomalyView type) {
@@ -184,4 +176,27 @@ float AEOpenGLHandler::getProjectionWidth(){
 
 float AEOpenGLHandler::getProjectionDepth() {
 	return viewer->getProjectionDepth();
+}
+
+void AEOpenGLHandler::clearViewer() {
+	switch (view_type) {
+	case OrthogonalViewer:
+		static_cast<AEOrthoViewer *>(viewer)->cleanGL();
+		break;
+	case Default:
+	default:
+		viewer->cleanGL();
+		break;
+	}
+}
+
+void AEOpenGLHandler::clearData() {
+	switch (data_type) {
+	case AEOpenGLHandler::LIDAR:
+		static_cast<DataLIDAR *>(data)->clear();
+		break;
+	default:
+		data->clear();
+		break;
+	}
 }

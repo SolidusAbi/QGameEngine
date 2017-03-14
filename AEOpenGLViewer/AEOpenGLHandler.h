@@ -28,7 +28,7 @@ class AEOPENGLVIEWER_EXPORT AEOpenGLHandler {
 
 	enum AEOpenGLHandlerState {
 		Created,
-		Cleansed,
+		Clean,
 		DataImported,
 		VertexImported,
 		Rendering
@@ -129,6 +129,8 @@ private:
 	//Private Helpers
 	void initialize(int width, int height);
 	int importVertex();
+	void clearViewer();
+	void clearData();
 };
 
 inline void AEOpenGLHandler::setData(Data *data) { clear(); this->data = data; state = AEOpenGLHandlerState::DataImported; }
