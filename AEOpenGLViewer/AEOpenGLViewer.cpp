@@ -349,7 +349,7 @@ void AEOpenGLViewer::mousePressEvent(QMouseEvent *event) {
 }
 
 void AEOpenGLViewer::mouseReleaseEvent(QMouseEvent *event) {
-	if (event->button() == Qt::RightButton) {
+	if (event->button() == Qt::LeftButton) {
 		button_pressed = false;
 	}
 }
