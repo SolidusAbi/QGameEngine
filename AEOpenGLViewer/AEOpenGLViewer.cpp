@@ -343,7 +343,7 @@ void AEOpenGLViewer::keyPressEvent(QKeyEvent *event) {
 }
 
 void AEOpenGLViewer::mousePressEvent(QMouseEvent *event) {
-	if (event->button() == Qt::RightButton) {
+	if (event->button() == Qt::LeftButton) {
 		button_pressed = true;
 	}
 }
@@ -359,6 +359,7 @@ int AEOpenGLViewer::setProjectionWidth(float orthogonal_width) {
 		return -1;
 
 	this->ortho_width = orthogonal_width;
+	setOrthogonalProjection(width(), height());
 	update();
 	return 0;
 }
@@ -368,6 +369,7 @@ int AEOpenGLViewer::setProjectionClippingDepth(float orthogonal_clipping) {
 		return -1;
 
 	this->ortho_clipping = orthogonal_clipping;
+	setOrthogonalProjection(width(), height());
 	update();
 	return 0;
 }
