@@ -156,6 +156,7 @@ void AEOpenGLViewer::renderGL() {
 
 	shader_program->setUniformValue(u_worldToCamera, camera.toMatrix());
 	shader_program->setUniformValue(u_cameraToView, projection);
+	glPointSize(1.4f);
 	{
 		for (size_t globjects_index = 0; globjects_index < objects.size(); ++globjects_index) {
 			objects.at(globjects_index).vao->bind();
