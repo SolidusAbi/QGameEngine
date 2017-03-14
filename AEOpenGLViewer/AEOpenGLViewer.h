@@ -92,12 +92,16 @@ public:
 	*/
 	int setProjectionWidth(float orthogonal_width);
 
+	float getProjectionWidth();
+
 	/**
 	*	@brief Setting the projection depth in a Orthogonal view adjusted with the clipping plane of the projection in the Z-axis.
 	*	@param orthogonal_clipping	width of the orthogonal projection matrix
 	*	@return -1 (It is not a orthogonal view) and 0 (Success)
 	*/
 	int setProjectionClippingDepth(float orthogonal_clipping);
+
+	float getProjectionDepth();
 
 protected slots:
 	/**
@@ -184,6 +188,8 @@ private:
 inline void AEOpenGLViewer::setVertices(std::vector<Vertex> vertices) { setVertices(vertices, GL_POINTS); }
 inline void AEOpenGLViewer::setClippingValue(float clipping_value) { ortho_clipping = clipping_value; }
 inline bool AEOpenGLViewer::toImage(QString img) { return toImage(img, 800, 600); }
+inline float AEOpenGLViewer::getProjectionWidth() { return ortho_width; }
+inline float AEOpenGLViewer::getProjectionDepth() { return ortho_clipping; }
 
 #endif // GLWINDOW_H
 

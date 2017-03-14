@@ -116,7 +116,7 @@ int DataLIDAR::importLASFile(std::string filename) {
 		return -1;
 	}
 
-	AePointDataRecordSecuentialIterator iterator = lasReader->pointDataRecordSecuentialIterator();
+	AePointDataRecordSecuentialIterator iterator = lasReader->getPointDataRecordSecuentialIterator();
 
 	int percentage = 0;
 	double tmpSumX = 0;
@@ -149,9 +149,9 @@ int DataLIDAR::importLASFile(std::string filename) {
 
 		point_cloud->points.push_back(tmp);
 
-		if (percentage != iterator.percentage()) {
-			qDebug() << iterator.percentage() << "%" << "\r";
-			percentage = iterator.percentage();
+		if (percentage != iterator.getPercentage()) {
+			qDebug() << iterator.getPercentage() << "%" << "\r";
+			percentage = iterator.getPercentage();
 		}
 	}
 	lasReader->close();

@@ -141,6 +141,7 @@ void AEOpenGLViewer::cleanGL() {
 		delete objects.at(i).vao;
 	}
 	objects.clear();
+	camera.restore();
 
 	update();
 }

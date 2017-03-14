@@ -8,8 +8,8 @@
 
 #include "Data.h"
 #include "Vertex.h"
-#include "aelas.h"
-#include "ae_datatypes.h"
+#include "AeLas/aelas.h"
+#include "AE_DataTypes/ae_datatypes.h"
 
 //Normalize
 //z_i=x_o-min(x)/(max(x)-min(x)) //Maybe a future implementation

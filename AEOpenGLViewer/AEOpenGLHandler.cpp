@@ -98,9 +98,17 @@ int AEOpenGLHandler::show() {
 	return 0;
 }
 
-void AEOpenGLHandler::clean() {
+void AEOpenGLHandler::clear() {
 	viewer->cleanGL();
-	data->clear();
+	switch (data_type)
+	{
+	case AEOpenGLHandler::LIDAR:
+		static_cast<DataLIDAR *>(data)->clear();
+		break;
+	default:
+		data->clear();
+		break;
+	}
 
 	state = AEOpenGLHandlerState::Cleansed;
 }
@@ -164,4 +172,16 @@ void AEOpenGLHandler::paint(std::vector<QVector3D>& point, QVector3D & color, GL
 	}
 
 	viewer->setVertices(vertices, primitive_type);
+}
+
+bool AEOpenGLHandler::toImage(QString image_dir){
+	return viewer->toImage(image_dir);
+}
+
+float AEOpenGLHandler::getProjectionWidth(){
+	return viewer->getProjectionWidth();
+}
+
+float AEOpenGLHandler::getProjectionDepth() {
+	return viewer->getProjectionDepth();
 }

@@ -81,7 +81,7 @@ public:
 	/** 
 	*	@brief To clean the AEOpenGLViewer data.
 	*/
-	void clean();
+	void clear();
 
 	/**
 	*	@brief Setting the projection zoom in a orthogonal projection viewer
@@ -110,6 +110,14 @@ public:
 	*	@primitive_type	GLenum(GL_POINTS, GL_LINES...)
 	*/
 	void paint(std::vector<QVector3D> &point, QVector3D &color, GLenum primitive_type);
+
+	/************************************************************************/
+	/*                                                                      */
+	/************************************************************************/
+	bool toImage(QString image_dir);
+
+	float getProjectionWidth();
+	float getProjectionDepth();
 private:
 	AEOpenGLHandlerState state;
 	AEOpenGLHandlerData data_type;
@@ -123,7 +131,7 @@ private:
 	int importVertex();
 };
 
-inline void AEOpenGLHandler::setData(Data *data) { clean(); this->data = data; state = AEOpenGLHandlerState::DataImported; }
+inline void AEOpenGLHandler::setData(Data *data) { clear(); this->data = data; state = AEOpenGLHandlerState::DataImported; }
 inline AEOpenGLViewer* AEOpenGLHandler::getViewer() { return viewer; };
 
 inline int AEOpenGLHandler::importDataFromFile(QString filename) { return importDataFromFile(filename, QVector3D(-1, -1, -1)); }
