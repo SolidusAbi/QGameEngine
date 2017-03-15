@@ -148,7 +148,7 @@ void AEOpenGLViewer::cleanGL() {
 	update();
 }
 
-void AEOpenGLViewer::renderGL() {
+void AEOpenGLViewer::renderGL(float point_size) {
 	// Clear
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -156,7 +156,7 @@ void AEOpenGLViewer::renderGL() {
 
 	shader_program->setUniformValue(u_worldToCamera, camera.toMatrix());
 	shader_program->setUniformValue(u_cameraToView, projection);
-	glPointSize(1.4f);
+	glPointSize(point_size);
 	{
 		for (size_t globjects_index = 0; globjects_index < objects.size(); ++globjects_index) {
 			objects.at(globjects_index).vao->bind();
@@ -255,7 +255,7 @@ bool AEOpenGLViewer::toImage(QString img_name, int width, int height) {
 	QOpenGLFramebufferObject fbo(width, height);
 	fbo.bind();
 	{
-		renderGL();
+		renderGL(1.8f);
 	}
 	fbo.release();
 	QImage image(fbo.toImage());

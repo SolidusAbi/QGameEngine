@@ -182,7 +182,7 @@ private:
 	// Private Helpers
 	void printContextInformation();
 	void initialize(int width, int height);
-	void renderGL();
+	void renderGL(float point_size = 1.3f);
 };
 
 inline void AEOpenGLViewer::setVertices(std::vector<Vertex> vertices) { setVertices(vertices, GL_POINTS); }
